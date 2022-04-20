@@ -23,8 +23,8 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '**/*.csproj'
-    workingDirectory: '$(System.DefaultWorkingDirectory)'
+    projects: '$(solution)'
+    arguments: '--output $(Build.ArtifactStagingDirectory)'
 
 
 - task: PublishBuildArtifacts@1
