@@ -10,16 +10,12 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  buildConfiguration: 'Release'
-
+  solution: '**/*.sln'
 
 steps:
-- task: DotNetCoreCLI@2
+- task: NuGetCommand@2
   inputs:
-    command: 'restore'
-    projects: '**/*.csproj'
-    feedsToUse: 'select'
-    vstsFeed: 'd905aac2-99a7-45b4-b380-dce97fb43127'
+    restoreSolution: '$(solution)'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
