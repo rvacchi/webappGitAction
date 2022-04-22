@@ -13,6 +13,8 @@ variables:
   solution: '**/*.sln'
 
 steps:
+- task: NuGetToolInstaller@1
+  
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
@@ -22,11 +24,13 @@ steps:
     projects: '**/*.csproj'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 
-- task: CopyFiles@2
-  inputs:
-    targetFolder: '$(Build.ArtifactStagingDirectory)'    
+# - task: CopyFiles@2
+#   inputs:
+#     targetFolder: '$(Build.ArtifactStagingDirectory)'    
  
 - task: PublishBuildArtifacts@1    
   displayName: 'Publish Artifact: drop'
   inputs:
     PathtoPublish: '$(build.Artifactstagingdirectory)'
+    ArtifactName: 'rodolfo'
+    publishLocation: Container
